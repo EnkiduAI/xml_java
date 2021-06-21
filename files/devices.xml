@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<devices xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://www.example.org/ComputerDevices"
+         xsi:schemaLocation="http://www.example.org/ComputerDevices scheme.xsd">
+
+
+    <integralDevice id="w1">
+        <name>Integral device example</name>
+        <origin>China</origin>
+        <price>500</price>
+        <cooler>false</cooler>
+        <port>PCIE</port>
+        <critical>true</critical>
+        <integral-device-type>VRAM</integral-device-type>
+    </integralDevice>
+
+    <integralDevice id="w2">
+        <name>Integral device example</name>
+        <origin>China</origin>
+        <price>1000</price>
+        <cooler>false</cooler>
+        <port>PCIE</port>
+        <critical>true</critical>
+        <integral-device-type>VRAM</integral-device-type>
+    </integralDevice>
+
+    <integralDevice id="w3">
+        <name>Integral device example</name>
+        <origin>China</origin>
+        <price>10000</price>
+        <cooler>true</cooler>
+        <port>VGA</port>
+        <critical>false</critical>
+        <integral-device-type>VRAM</integral-device-type>
+    </integralDevice>
+
+    <peripheralDevice id="w4">
+        <name>peripheral device example</name>
+        <origin>Japan</origin>
+        <price>1000</price>
+        <cooler>false</cooler>
+        <port>USB</port>
+        <critical>false</critical>
+        <peripheral-device-type>multimedia</peripheral-device-type>
+    </peripheralDevice>
+</devices>

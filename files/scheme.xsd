@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.example.org/ComputerDevices"
+        xmlns:tns="http://www.example.org/ComputerDevices"
+        elementFormDefault="qualified">
+
+    <element name="devices">
+        <complexType>
+            <sequence>
+                <element ref="tns:device" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="device">
+        <sequence>
+            <element name="name" type="string"/>
+            <element name="origin" type="tns:origin"/>
+            <element name="price" type="tns:price"/>
+            <element name="cooler" type="boolean"/>
+            <element name="port" type="tns:port"/>
+            <element name="critical" type="boolean"/>
+        </sequence>
+        <attribute name="description" use="optional" default="no description"/>
+        <attribute name="id" use="required" type="tns:id"/>
+    </complexType>
+
+    <complexType name="integral-device">
+        <complexContent>
+            <extension base="tns:device">
+                <sequence>
+                    <element name="integral-device-type" type="tns:integralDeviceType"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="peripheral-device">
+        <complexContent>
+            <extension base="tns:device">
+                <sequence>
+                    <element name="peripheral-device-type" type="tns:peripheralDeviceType"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <simpleType name="integralDeviceType">
+        <restriction base="string">
+            <enumeration value="RAM"/>
+            <enumeration value="VRAM"/>
+            <enumeration value="CPU"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="peripheralDeviceType">
+        <restriction base="string">
+            <enumeration value="input/output"/>
+            <enumeration value="multimedia"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="port">
+        <restriction base="string">
+            <enumeration value="USB"/>
+            <enumeration value="PCIE"/>
+            <enumeration value="VGA"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="id">
+        <restriction base="ID">
+            <pattern value="w\d{1,10}"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="origin">
+        <restriction base="string">
+            <enumeration value="China"/>
+            <enumeration value="USA"/>
+            <enumeration value="Canada"/>
+            <enumeration value="Japan"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="price">
+        <restriction base="positiveInteger">
+            <minInclusive value="0"/>
+            <maxInclusive value="1000000"/>
+        </restriction>
+    </simpleType>
+
+    <element name="device" type="tns:device" abstract="true"/>
+    <element name="peripheralDevice" type="tns:peripheral-device" substitutionGroup="tns:device"/>
+    <element name="integralDevice" type="tns:integral-device" substitutionGroup="tns:device"/>
+</schema>
